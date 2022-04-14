@@ -84,7 +84,7 @@ module "eks" {
   vpc_id     = module.eks_vpc.vpc_id
   subnet_ids = module.eks_vpc.intra_subnets
 
-  manage_aws_auth_configmap = true
+#   manage_aws_auth_configmap = true
 
   # Extend cluster security group rules
   cluster_security_group_additional_rules = {
