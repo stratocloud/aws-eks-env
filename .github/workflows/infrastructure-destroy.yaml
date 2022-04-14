@@ -36,6 +36,15 @@ jobs:
         run: terraform plan -destroy -no-color
         continue-on-error: true
 
+      - name: truncate terraform plan result
+        run: |
+          plan=$(cat <<'EOF'
+          ${{ format('{0}{1}', steps.plan.outputs.stdout, steps.plan.outputs.stderr) }}
+          EOF
+          )
+          echo "${plan}" | grep -v 'Refreshing state' >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - uses: actions/github-script@v6.0.0
         if: github.event_name == 'pull_request'
         env:
