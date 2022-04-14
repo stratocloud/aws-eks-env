@@ -345,4 +345,3 @@ resource "aws_iam_policy" "node_additional" {
 
   tags = local.tags
 }
-

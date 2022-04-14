@@ -1138,4 +1138,3 @@ variable "aws_auth_accounts" {
   type        = list(any)
   default     = []
 }
-
