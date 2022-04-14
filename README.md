@@ -245,6 +245,7 @@ Terraform Module that provisions highly available, reliable & scalable Kubernete
 | <a name="input_vpc_name"></a> [vpc\_name](#input\_vpc\_name) | Name of the VPC | `string` | n/a | yes |
 | <a name="input_vpc_tags"></a> [vpc\_tags](#input\_vpc\_tags) | Additional tags for the VPC | `map(string)` | `{}` | no |
 
+
 ## Outputs
 
 | Name | Description |
