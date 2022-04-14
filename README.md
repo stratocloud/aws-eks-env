@@ -280,4 +280,3 @@ Terraform Module that provisions highly available, reliable & scalable Kubernete
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC |
 | <a name="output_vpc_main_route_table_id"></a> [vpc\_main\_route\_table\_id](#output\_vpc\_main\_route\_table\_id) | The ID of the main route table associated with this VPC |
 | <a name="output_vpc_name"></a> [vpc\_name](#output\_vpc\_name) | The name of the VPC specified as argument to this module |
-
