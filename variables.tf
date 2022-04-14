@@ -3,23 +3,6 @@
 variable "aws_region" {
   description = "AWS region to be used to create all the resources"
   type        = string
-  default     = "us-east-1"
-}
-
-variable "aws_profile" {
-  description = "AWS profile to be used for authentication"
-  default     = ""
-  type        = string
-}
-
-variable "aws_account_ids" {
-  description = "List of AWS Account IDs to restrict the scope"
-  type        = list(string)
-}
-
-
-variable "aws_assume_role_arn" {
-  default = ""
 }
 
 ### VPC Module Variables
