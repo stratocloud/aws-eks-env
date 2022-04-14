@@ -1,15 +1,9 @@
 
 
 provider "aws" {
-
-  region              = var.aws_region
-  profile             = var.aws_profile
-  allowed_account_ids = var.aws_account_ids
-
-  assume_role {
-    role_arn = var.aws_assume_role_arn
+  region    = var.aws_region
   }
-}
+
 
 
 
