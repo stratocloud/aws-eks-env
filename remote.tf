@@ -3,7 +3,7 @@ terraform {
     organization = "stratocloud"
 
     workspaces {
-      name = "aws-kubernetes-env"
+      name = "aws-eks-env"
     }
   }
 }
