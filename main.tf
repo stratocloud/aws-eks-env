@@ -58,16 +58,16 @@ module "eks" {
 
   cluster_ip_family = var.cluster_ip_family
 
-  cluster_addons = {
-    coredns = {
-      resolve_conflicts = "OVERWRITE"
-    }
-    kube-proxy = {}
-    vpc-cni = {
-      resolve_conflicts        = "OVERWRITE"
-      service_account_role_arn = module.eks_vpc_cni_irsa.iam_role_arn
-    }
-  }
+#  cluster_addons = {
+#    coredns = {
+#      resolve_conflicts = "OVERWRITE"
+#    }
+#    kube-proxy = {}
+#    vpc-cni = {
+#      resolve_conflicts        = "OVERWRITE"
+#      service_account_role_arn = module.eks_vpc_cni_irsa.iam_role_arn
+#    }
+#  }
 
   cluster_encryption_config = [
     {
@@ -302,6 +302,31 @@ resource "aws_key_pair" "this" {
   public_key      = tls_private_key.this.public_key_openssh
 
   tags = local.tags
+}
+
+resource "aws_eks_addon" "coredns" {
+  cluster_name = module.eks.cluster_id
+  addon_name   = "coredns"
+
+  resolve_conflicts = "OVERWRITE"
+
+  depends_on = [module.eks.eks_managed_node_groups]
+}
+
+resource "aws_eks_addon" "kube_proxy" {
+  cluster_name = module.eks.cluster_id
+  addon_name   = "kube-proxy"
+
+  resolve_conflicts = "OVERWRITE"
+}
+
+resource "aws_eks_addon" "aws_ebs_csi_driver" {
+  cluster_name = module.eks.cluster_id
+  addon_name   = "aws-ebs-csi-driver"
+
+  resolve_conflicts = "OVERWRITE"
+
+  depends_on = [module.eks.eks_managed_node_groups]
 }
 
 resource "aws_security_group" "remote_access" {
