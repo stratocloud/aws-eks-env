@@ -58,16 +58,16 @@ module "eks" {
 
   cluster_ip_family = var.cluster_ip_family
 
-#  cluster_addons = {
-#    coredns = {
-#      resolve_conflicts = "OVERWRITE"
-#    }
-#    kube-proxy = {}
-#    vpc-cni = {
-#      resolve_conflicts        = "OVERWRITE"
-#      service_account_role_arn = module.eks_vpc_cni_irsa.iam_role_arn
-#    }
-#  }
+  #  cluster_addons = {
+  #    coredns = {
+  #      resolve_conflicts = "OVERWRITE"
+  #    }
+  #    kube-proxy = {}
+  #    vpc-cni = {
+  #      resolve_conflicts        = "OVERWRITE"
+  #      service_account_role_arn = module.eks_vpc_cni_irsa.iam_role_arn
+  #    }
+  #  }
 
   cluster_encryption_config = [
     {
