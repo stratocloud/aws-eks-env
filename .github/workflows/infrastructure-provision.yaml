@@ -1,11 +1,14 @@
-name: "Terraform"
+name: "AWS EKS Infrastructure"
 
 on:
-  push:
-    branches:
-      - main
-      - develop
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      infra:
+        type: choice
+        description: Provision or Destroy
+        options: 
+        - apply
+        - destroy
 
 jobs:
   terraform:
@@ -36,7 +39,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -no-color
+        run: terraform plan -${{ github.event.inputs.infra }} -no-color
         continue-on-error: true
 
       - name: Format plan
@@ -79,4 +82,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/develop'  && github.event_name == 'push'
-        run: terraform apply -auto-approve
+        run: terraform ${{ github.event.inputs.infra }} -auto-approve
