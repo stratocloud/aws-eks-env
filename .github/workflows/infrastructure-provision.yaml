@@ -1,6 +1,7 @@
 name: "AWS EKS Infrastructure"
 
 on:
+  pull_request:
   workflow_dispatch:
     inputs:
       infra:
