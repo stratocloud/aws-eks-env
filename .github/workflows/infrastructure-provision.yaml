@@ -43,11 +43,11 @@ jobs:
         run: terraform plan -no-color
         continue-on-error: true
 
-      - name: Terraform Plan -Destroy
-        id: destroy
-        if: ${{ (github.event_name == 'pull_request') || (github.event_name == 'workflow_dispatch') }} && ${{ github.event.inputs.infra == '-destroy'}}
-        run: terraform plan ${{ github.event.inputs.infra }} -no-color
-        continue-on-error: true
+#      - name: Terraform Plan -Destroy
+#        id: destroy
+#        if: ${{ (github.event_name == 'pull_request') || (github.event_name == 'workflow_dispatch') }} && ${{ github.event.inputs.infra == '-destroy'}}
+#        run: terraform plan ${{ github.event.inputs.infra }} -no-color
+#        continue-on-error: true
         
       - name: Format plan
         id: format-plan
