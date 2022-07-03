@@ -41,7 +41,6 @@ jobs:
         id: plan
         if: ${{ (github.event_name == 'pull_request') || (github.event_name == 'workflow_dispatch') }} && ${{ github.event.inputs.infra == 'apply'}}
         run: terraform plan -no-color
-        continue-on-error: true
 
 #      - name: Terraform Plan -Destroy
 #        id: destroy
@@ -85,7 +84,7 @@ jobs:
             
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
-        run: exit 1
+        continue-on-error: true
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/develop'  && github.event_name == 'push'
