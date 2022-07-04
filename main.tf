@@ -320,14 +320,14 @@ resource "aws_eks_addon" "kube_proxy" {
   resolve_conflicts = "OVERWRITE"
 }
 
-resource "aws_eks_addon" "aws_ebs_csi_driver" {
-  cluster_name = module.eks.cluster_id
-  addon_name   = "aws-ebs-csi-driver"
+# resource "aws_eks_addon" "aws_ebs_csi_driver" {
+#   cluster_name = module.eks.cluster_id
+#   addon_name   = "aws-ebs-csi-driver"
 
-  resolve_conflicts = "OVERWRITE"
+#   resolve_conflicts = "OVERWRITE"
 
-  depends_on = [module.eks.eks_managed_node_groups]
-}
+#   depends_on = [module.eks.eks_managed_node_groups]
+# }
 
 resource "aws_security_group" "remote_access" {
   name_prefix = "${local.cluster_name}-remote-access"
