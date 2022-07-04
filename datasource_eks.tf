@@ -28,7 +28,6 @@ data "aws_ami" "eks_default_bottlerocket" {
   }
 }
 
-// Create an IAM role for cluster admins and only allow a user created by Vault to assume it.
 data "aws_iam_policy_document" "assume_policy" {
 
   statement {
@@ -52,4 +51,10 @@ data "aws_iam_policy_document" "assume_policy" {
       ]
     }
   }
+}
+  
+resource "aws_iam_role" "cluster_admin" {
+  name               = join("-", [var.cluster_name, "cluster-admin"])
+  assume_role_policy = data.aws_iam_policy_document.assume_policy.json
+  description        = "IAM role for rull Admin access on the ${var.cluster_name} EKS Cluster"
 }
